@@ -8,7 +8,7 @@ import { IAlbum, ADD_BULK, CLEAR } from '../../reducers/albums.reducer';
 @Component({
   selector: 'app-albums-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.scss']
 })
 export class AlbumsListComponent implements OnInit {
 
