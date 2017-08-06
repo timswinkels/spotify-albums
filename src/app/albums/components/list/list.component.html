@@ -1,0 +1,12 @@
+<div class="albums-list">
+  <h1>Albums</h1>
+  <p *ngIf="isLoading">Loading...</p>
+  <ul *ngIf="!isLoading" class="albums">
+    <li *ngFor="let album of albums" class="album">
+      <img alt="{{ album.title }}" src="{{ album.imageUrl }}"
+        class="album__cover"/>
+      <div class="album__title">{{ album.title }}</div>
+      <div class="album__artist">{{ album.artist }}</div>
+    </li>
+  </ul>
+</div>

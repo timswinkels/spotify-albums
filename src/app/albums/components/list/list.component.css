@@ -1,0 +1,36 @@
+.albums-list {}
+
+.albums {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-around;
+}
+
+.album {
+  display: inline-block;
+  height: 250px;
+  width: 250px;
+  border: pink 1px dotted;
+  text-align: center;
+}
+
+.album__title,
+.album__artist {
+  display: inline-block;
+  text-justify: elipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.album__artist {
+  display: none;
+}
+
+.album__cover {
+  height: 100%;
+  width: auto;
+}
