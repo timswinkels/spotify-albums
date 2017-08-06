@@ -3,10 +3,12 @@
   <p *ngIf="isLoading">Loading...</p>
   <ul *ngIf="!isLoading" class="albums">
     <li *ngFor="let album of albums" class="album">
+    <div class="album__cover-placeholder">
       <img alt="{{ album.title }}"
         src="{{ album.imageUrl }}"
         class="album__cover"
         title="{{ album.title }} - {{ album.artist }}"/>
+      </div>
       <div class="album__title">{{ album.title }}</div>
       <div class="album__artist">{{ album.artist }}</div>
     </li>
