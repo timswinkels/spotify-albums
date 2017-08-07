@@ -9,10 +9,13 @@ import { AlbumsListComponent } from './components/list/list.component';
 
 import { AlbumsService } from './services/albums/albums.service';
 
+import { SaModule } from '../sa/sa.module';
+
 @NgModule({
   imports: [
     CommonModule,
     AlbumsRoutingModule,
+    SaModule,
     StoreModule.forRoot({ albums: albumsReducer })
   ],
   providers: [AlbumsService],

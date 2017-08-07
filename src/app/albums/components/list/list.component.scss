@@ -1,4 +1,7 @@
+@import '../../../sa/styles/breakpoints.variables.scss';
+
 .albums-list {
+  padding: 20px;
 }
 
 .albums {
@@ -11,14 +14,13 @@
 
 .album {
   display: inline-block;
-  width: 250px;
-  padding-right: 40px;
+  width: 190px;
   padding-bottom: 40px;
-  box-sizing: border-box;
+  padding-right: 40px;
   cursor: default;
 
   &__cover-placeholder {
-    min-height: 210px;
+    min-height: 200px;
     width: 100%;
     margin-bottom: 10px;
     background-color: rgba(0, 0, 0, 0.1);
@@ -30,7 +32,7 @@
     display: block;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
     //
-    transition: transform .2s ease-in-out;
+    transition: transform .15s ease-in-out;
   }
 
   &__title,
@@ -59,3 +61,27 @@
   }
 }
 
+@media all and (max-width: $sa-breakpoint-small) {
+  .albums {
+    justify-content: center;
+  }
+
+  .album {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+@media all and (min-width: $sa-breakpoint-small) and (max-width: $sa-breakpoint-medium) {
+  .albums {
+    justify-content: center;
+  }
+
+  .album {
+    width: 220px;
+
+    &:nth-child(even) {
+      padding-right: 0;
+    }
+  }
+}

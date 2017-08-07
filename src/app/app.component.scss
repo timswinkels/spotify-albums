@@ -1,14 +1,9 @@
-@import url("../assets/fonts/fira/fira.scss");
+// Reset css
+@import url("../../node_modules/normalize.css/normalize.css");
+//
+// div, span, p, h1, h2, h3, h4, h5, h6, ul, li, img {
+//   box-sizing: border-box;
+// }
 
-body {
-  font-family: "Fira Sans", "arial";
-  font-size: 16px;
-  line-height: 1.4em;
-  background-color: #1F1F1F;
-  color: #CCC;
-}
-
-h1 {
-  font-weight: normal;
-  letter-spacing: 0.3px;
-}
+// Typography
+@import url("./sa/styles/typography.scss");

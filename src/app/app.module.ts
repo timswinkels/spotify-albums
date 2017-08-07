@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { AlbumsModule } from './albums/albums.module';
+import { SaModule } from './sa/sa.module';
 import { SpotifyModule } from './spotify/spotify.module';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { SpotifyModule } from './spotify/spotify.module';
   imports: [
     BrowserModule,
     AlbumsModule,
+    SaModule,
     SpotifyModule
   ],
   providers: [],
