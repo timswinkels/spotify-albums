@@ -23,7 +23,7 @@ export class SpotifyAuthenticationService {
       `?client_id=${this.clientId}` +
       `&response_type=token` +
       `&redirect_uri=${encodeURI(document.location.origin)}` +
-      `&scope=${encodeURI('user-library-read')}` +
+      `&scope=${encodeURI('user-library-read streaming')}` +
       `&state=${encodeURI(state)}`;
   }
 

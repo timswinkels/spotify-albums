@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SpotifyAuthenticationService } from './services/authentication/authentication.service';
 import { SpotifyApiTokenInterceptor } from './interceptors/api-token/api-token.interceptor';
+import { SpotifyAlbumsService } from './services/albums/albums.service';
 
 @NgModule({
   imports: [
