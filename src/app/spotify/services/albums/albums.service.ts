@@ -13,6 +13,7 @@ interface SpotifySavedAlbum {
 }
 
 interface SpotifyAlbum {
+  id: 'string';
   name: 'string';
   artists: { name: string; }[];
   album_type: 'album' | 'compilation' | 'single';
@@ -67,7 +68,7 @@ export class SpotifyAlbumsService {
 
                 this.albumsStore.dispatch({
                   type: album.ADD,
-                  values: item
+                  data: item
                 });
               }
             });
@@ -98,12 +99,12 @@ export class SpotifyAlbumsService {
 
   private SpotifyAlbum2Album = (data: SpotifyAlbum): Album => {
     return {
-      title: '' + data.name,
+      id: data.id,
+      title: data.name,
       artist: '' + data.artists.map(artist => artist.name).join(', '), // Put all artists into one string
       type: data.album_type,
       year: new Date(data.release_date).getFullYear(),
       imageUrl: data.images.sort((a, b) => b.width - a.width)[0].url // Get bigest image available
     };
   }
-
 }

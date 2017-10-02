@@ -1,0 +1,24 @@
+<a [routerLink]="[ '/albums' ]">Back to albums</a>
+
+<pre>{{ isLoading | json }}</pre>
+<pre>{{ isLoadFailed | json }}</pre>
+<pre>{{ album | json }}</pre>
+
+
+<ng-container [ngSwitch]="isLoading">
+
+  <!-- Loading true -->
+  <p *ngSwitchCase="true">Loading...</p>
+
+  <!-- Loading false -->
+  <ng-container *ngSwitchCase="false">
+    <ng-container [ngSwitch]="isLoadFailed">
+
+      <!-- Load failure -->
+      <p *ngSwitchCase="true">Error, could not load album details</p>
+
+      <!-- Load successful -->
+      <pre *ngSwitchCase="true">{{ album | json }}</pre>
+    </ng-container>
+  </ng-container>
+</ng-container>

@@ -8,7 +8,7 @@ export const ADD = '[Album] Add';
 export class Add implements Action {
   readonly type = ADD;
 
-  constructor (public values: Album) {}
+  constructor (public data: Album) {}
 }
 
 /**

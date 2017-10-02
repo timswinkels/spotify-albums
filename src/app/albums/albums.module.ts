@@ -10,6 +10,7 @@ import { AlbumsListComponent } from './components/list/list.component';
 import { SpotifyAlbumsService } from '../spotify/services/albums/albums.service';
 
 import { SaModule } from '../sa/sa.module';
+import { AlbumsItemComponent } from '../albums/components/item/item.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { SaModule } from '../sa/sa.module';
     StoreModule.forRoot({ albums: albumsReducer })
   ],
   providers: [SpotifyAlbumsService],
-  declarations: [AlbumsListComponent],
+  declarations: [AlbumsListComponent, AlbumsItemComponent],
   exports: [AlbumsListComponent]
 })
 export class AlbumsModule {}
