@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Observable, Observer } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 import { Store } from '@ngrx/store';
 import { Album } from '../../../albums/models/albums.model';
@@ -35,17 +35,18 @@ interface SpotifyApiItemsResponse {
 @Injectable()
 export class SpotifyAlbumsService {
 
-  private albumsStore: Store<Album>;
+  private albumsStore: Store<Album[]>;
+  private albumsCount = 0;
 
   constructor(
     private http: HttpClient,
     private store: Store<any>
   ) {
-    this.albumsStore = store.select(state => state.album);
+    this.albumsStore = store.select(state => state.albums);
   }
 
-  public load(): Observable<SpotifySavedAlbum> {
-    return new Observable((observer: Observer<SpotifySavedAlbum>) => {
+  public load(foreceReload?): Observable<Album> {
+    return new Observable((observer) => {
       let itemCount = 0;
 
       let httpParams = new HttpParams();

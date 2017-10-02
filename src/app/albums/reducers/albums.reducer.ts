@@ -8,7 +8,14 @@ import * as album from '../actions/albums.action';
 export function albumsReducer(state: Album[] = [], action: album.Actions) {
   switch (action.type) {
     case album.ADD:
-      state.push(action.data);
+      const index = state.findIndex((album) => album.id === action.data.id);
+
+      if (index >= 0) {
+        state[index] = action.data;
+      }
+      else {
+        state.push(action.data);
+      }
 
       return state;
 
