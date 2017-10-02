@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { SpotifyAlbumsService } from '../../../spotify/services/albums/albums.service';
 import { Album } from '../../models/albums.model';
 
-import { Subscription } from 'rxjs/subscription';
+import { Subscription, Subject } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-albums-list',
@@ -15,11 +15,11 @@ import { Subscription } from 'rxjs/subscription';
 export class AlbumsListComponent implements OnInit, OnDestroy {
 
   public isLoading = true;
-  public hasLoadingFailure = false;
+  public isLoadFailed = false;
   public albums: Album[];
 
   private albumsStore: Store<Album[]>;
-  private albumsSubscription: Subscription;
+  private unsubscribe = new Subject<void>();
 
   constructor(
     private store: Store<any>,
@@ -31,22 +31,25 @@ export class AlbumsListComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     // Load store with albums
     this.spotifyAlbumsService.load()
-      .subscribe({
-        error: () => {
+      .takeUntil(this.unsubscribe)
+      .subscribe(
+        () => {},
+        (error) => {
+          this.isLoadFailed = true;
           this.isLoading = false;
         },
-        complete: () => {
-          this.isLoading = false;
-        }
-      });
+        () => this.isLoading = false
+      );
 
     // Subscribe to Albums
-    this.albumsSubscription = this.albumsStore.subscribe((albums) => {
-      this.albums = albums;
-    });
+    this.albumsStore
+      .takeUntil(this.unsubscribe)
+      .subscribe(
+        (albums) => this.albums = albums
+      );
   }
 
   public ngOnDestroy () {
-    this.albumsSubscription.unsubscribe();
+    this.unsubscribe.next();
   }
 }

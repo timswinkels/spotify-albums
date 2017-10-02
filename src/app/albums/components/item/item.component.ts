@@ -19,8 +19,8 @@ export class AlbumsItemComponent implements OnInit, OnDestroy {
   private isLoadFailed = false;
   private isLoading = true;
   //
-  private ngUnsubscribe = new Subject<void>();
-  private ngUnsubscribeStore = new Subject<void>();
+  private unsubscribe = new Subject<void>();
+  private unsubscribeStore = new Subject<void>();
 
   constructor(
     private store: Store<any>,
@@ -32,7 +32,7 @@ export class AlbumsItemComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     // Get ID
     this.activatedRoute.params
-      .takeUntil(this.ngUnsubscribe)
+      .takeUntil(this.unsubscribe)
       .subscribe(
         // Next
         ({ albumId }) => {
@@ -49,11 +49,11 @@ export class AlbumsItemComponent implements OnInit, OnDestroy {
   }
 
   public getAlbum (id) {
-    this.ngUnsubscribeStore.next();
+    this.unsubscribeStore.next();
 
     this.albumsStore
-      .takeUntil(this.ngUnsubscribe)
-      .takeUntil(this.ngUnsubscribeStore)
+      .takeUntil(this.unsubscribe)
+      .takeUntil(this.unsubscribeStore)
       .map((albums) => albums.find((album) => album.id === id))
       .subscribe(
         // Next
@@ -70,6 +70,6 @@ export class AlbumsItemComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy () {
-    this.ngUnsubscribe.next();
+    this.unsubscribe.next();
   }
 }
